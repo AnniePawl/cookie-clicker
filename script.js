@@ -19,10 +19,10 @@ let clickPowerLevel = document.getElementById('click-power-level');
 let clickPowerMultiple = document.getElementById('click-power-multiple');
 cookieCounter.innerHTML = cookieCount;
 
-
-cookieClicker.addEventListener("click", function() { cookieCount = cookieCount + clickPower;
-// update cookieCounter
-refreshCookieCount()
+//Cookie Clicker Event Listener
+cookieClicker.addEventListener("click", function() {
+    cookieCount = cookieCount + clickPower;
+    refreshCookieCount();
 })
 
 if (cookieCount >= clickPowerPriceAmount) {
@@ -31,37 +31,39 @@ if (cookieCount >= clickPowerPriceAmount) {
   refreshCookieCount()
 }
 
-//Event Listener -- Buy Click Power
+//Buy Click Power Event Listener
 buyClickPower.addEventListener('click', function () {
-    if (cookieCount >= clickPowerPriceAmount) {
-        console.log("item succesfully Bought");
-        // subtract cookies from the price of the item
-        cookieCount -= clickPowerPriceAmount;
-        // update cookieCounter
-        refreshCookieCount()
-        // Upgrade power Level
-        clickPowerLevelNumber += 1;
-        // Update click price
-        clickPowerPriceAmount = Math.floor(clickPowerPriceAmount * 1.33);
-        // Update click power
-        clickPower += 1 * Math.floor(clickPowerLevelNumber * 1.05);
-        // refresh shop  items
-        refreshPowerClick()
-    } else {
-        console.log("you don't have enough cookies!");
-  }
-})
+    buyClickPower.addEventListener('click', function () {
+        if (cookieCount >= clickPowerPriceAmount) {
+            console.log("item succesfully Bought");
+            // subtract cookies from the price of the item
+            cookieCount -= clickPowerPriceAmount;
+            // update cookieCounter
+            refreshCookieCount()
+            // Upgrade power Level
+            clickPowerLevelNumber += 1;
+            // Update click price
+            clickPowerPriceAmount = Math.floor(clickPowerPriceAmount * 1.33);
+            // Update click power
+            clickPower += 1 * Math.floor(clickPowerLevelNumber * 1.05);
+            // refresh shop  items
+            refreshPowerClick()
+        } else {
+            console.log("you don't have enough cookies!");
+        }
+    })
+ }
 
 //cookieCount Function
 let refreshCookieCount = function() {
   cookieCounter.innerHTML = cookieCount;
 }
 
-//Refresh Shop Function
-let refreshPowerClick = function() {
-  clickPowerLevel.innterHTML = clickPowerLevelNumber
-  clickPowerPrice.innerHTML = clickPowerPriceAmount;
-  clickPowerMultiple.innerHTML = clickPower;
+//Refresh Click Power Function
+let refreshPowerClick = function () {
+    clickPowerLevel.innerHTML = clickPowerLevelNumber;
+    clickPowerPrice.innerHTML = clickPowerPriceAmount;
+    clickPowerMultiple.innerHTML = clickPower;
 }
 
 
@@ -101,24 +103,24 @@ buyGrandma.addEventListener("click", function() {
     autoGrandmaStart();
     //refresh shop item
     refreshGrandma();
+    }
 })
 
 //Game Loop
-let autoGrandmaStart = function() {
-  let grandmaInt = window.setInterval(function(){
-    cookieCount += grandmaPower;
-    refreshCookieCount();
-  }, 1000);
+let autoGrandmaStart = function () {
+    let grandmaInt = window.setInterval(function(){
+        cookieCount += grandmaPower;
+        refreshCookieCount();
+    }, 1000);
 }
 
 
 //Frefresh Grandma Function
 let refreshGrandma = function() {
-  grandmaLevel.innerHTML = grandmaLevelNumber
-  grandmaPrice.innerHTML = grandmaPriceAmount;
-  grandmaMultiple.innerHTML = grandmaPower - 10;
+    grandmaLevel.innerHTML = grandmaLevelNumber;
+    grandmaPrice.innerHTML = grandmaPriceAmount;
+    grandmaMultiple.innerHTML = grandmaPower - 10;
 }
-
 
 /********************************
 
@@ -129,14 +131,14 @@ let refreshGrandma = function() {
 //set default values
 let facilityAuto = false;
 let facilityPower = 2000;
-let facilityPriceAmount = 100000;
+let facilityPriceAmount = 10000;
 let facilityLevelNumber = 0;
 
 //declare DOM variables
 let buyFacility = document.getElementById('buy-facility');
 let facilityPrice = document.getElementById('facility-price');
 let facilityLevel = document.getElementById('facility-level');
-let facilityMultiple = document.getElementById('facility-multiple');
+let facilityMultiple = document.getElementById('facility-mulitple');
 
 //buy a facility
 buyFacility.addEventListener("click", function() {
@@ -162,16 +164,16 @@ refreshFacility();
 })
 
 // Game loop
-let autoGrandmaStart = function () {
-    let grandmaInt = window.setInterval(function(){
-        cookieCount += grandmaPower;
+let autoFacilityStart = function() {
+    let facilityInt = window.setInterval(function () {
+        cookieCount += facilityPower;
         refreshCookieCount();
     }, 1000);
 }
 
 //Refresh Shop
-let refreshFacility = function() {
-  facilityLevel.innerHTML = facilityLevelNumber
-  facilityPrice.innerHTML = facilityPriceAmount;
-  facilityMultiple.innerHTML = facilityPower - 600;
+let refreshFacility = function (){
+    facilityLevel.innerHTML = facilityLevelNumber;
+    facilityPrice.innerHTML = facilityPriceAmount;
+    facilityMultiple.innerHTML = facilityPower - 600;
 }
