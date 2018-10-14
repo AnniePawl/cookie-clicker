@@ -72,6 +72,7 @@ let refreshPowerClick = function() {
 ********************************/
 
 //default variables
+let grandmaAuto = false;
 let grandmaPower = 50;
 let grandmaPriceAmount = 500;
 let grandmaLevelNumber = 0;
@@ -96,14 +97,24 @@ buyGrandma.addEventListener("click", function() {
     //update grandma power
     grandmaPower += 10;
     //turn autoGrandma on!
-
+    autoGrandma = true
+    autoGrandmaStart();
     //refresh shop item
     refreshGrandma();
 })
 
-    //Frefresh Grandma Function
+//Game Loop
+let autoGrandmaStart = function() {
+  let grandmaInt = window.setInterval(function(){
+    cookieCount += grandmaPower;
+    refreshCookieCount();
+  }, 1000);
+}
+
+
+//Frefresh Grandma Function
 let refreshGrandma = function() {
   grandmaLevel.innerHTML = grandmaLevelNumber
   grandmaPrice.innerHTML = grandmaPriceAmount;
-  grandmaMultiple.innerHTML = grandmaPower;
+  grandmaMultiple.innerHTML = grandmaPower - 10;
 }
