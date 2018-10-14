@@ -10,7 +10,7 @@ let clickPower = 1;
 let clickPowerPriceAmount = 50;
 let clickPowerLevelNumber = 1;
 
-//declare DOM variables
+//DOM variables
 let cookieCounter = document.getElementById('cookie-counter');
 let cookieClicker = document.getElementById('cookie-clicker');
 let buyClickPower = document.getElementById('buy-click-power');
@@ -62,4 +62,48 @@ let refreshPowerClick = function() {
   clickPowerLevel.innterHTML = clickPowerLevelNumber
   clickPowerPrice.innerHTML = clickPowerPriceAmount;
   clickPowerMultiple.innerHTML = clickPower;
+}
+
+
+/********************************
+
+          Grandmas
+
+********************************/
+
+//default variables
+let grandmaPower = 50;
+let grandmaPriceAmount = 500;
+let grandmaLevelNumber = 0;
+
+//DOM variables
+let buyGrandma = document.getElementById('buy-grandma');
+let grandmaPrice = document.getElementById('grandma-price');
+let grandmaLevel = document.getElementById('grandma-level');
+let grandmaMultiple = document.getElementById('grandma-multiple');
+
+//Buy a Grandma
+buyGrandma.addEventListener("click", function() {
+    //make sure we have enough cookies and subtract our cookies from the price
+    if (cookieCount >= grandmaPriceAmount) {
+    // Subtract cookies from price of the item.
+    cookieCount +=  - grandmaPriceAmount;
+    refreshCookieCount()
+    //upgrade power level
+    grandmaLevelNumber += 1;
+    //update price
+    grandmaPriceAmount = Math.floor(grandmaPriceAmount * 1.33);
+    //update grandma power
+    grandmaPower += 10;
+    //turn autoGrandma on!
+
+    //refresh shop item
+    refreshGrandma();
+})
+
+    //Frefresh Grandma Function
+let refreshGrandma = function() {
+  grandmaLevel.innerHTML = grandmaLevelNumber
+  grandmaPrice.innerHTML = grandmaPriceAmount;
+  grandmaMultiple.innerHTML = grandmaPower;
 }
